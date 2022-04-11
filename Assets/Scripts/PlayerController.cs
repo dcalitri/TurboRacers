@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip shootSound;
     public AudioClip crashSound;
     private AudioSource playerAudio;
+    public bool carIsMoving;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed * leftInput);
             transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-            
+
             if (Input.GetKeyDown(KeyCode.Space) && Time.time - lastCallTime > 0.5f)
             {
                 Instantiate(projectilePrefab, bulletSpawner.position, projectilePrefab.transform.rotation);
