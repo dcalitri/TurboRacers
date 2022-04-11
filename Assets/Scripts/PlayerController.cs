@@ -35,28 +35,7 @@ public class PlayerController : MonoBehaviour
        if(gameManager.isGameActive)
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed * leftInput);
-            if(Input.GetKeyDown(KeyCode.W))
-            {
-                transform.Translate(Vector3.right * Time.deltaTime * speed * leftInput);
-            }
-            
-            if(Input.GetKeyDown(KeyCode.S))
-            {
-                transform.Translate(Vector3.left * Time.deltaTime * speed * leftInput);
-            }
-            
             transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-                playerAudio.PlayOneShot(carSound, 0.25f);
-            }
-
-            if(Input.GetKeyDown(KeyCode.A))
-            {
-                transform.Translate(Vector3.back * Time.deltaTime * speed * forwardInput);
-                playerAudio.PlayOneShot(carSound, 0.25f);
-            }
             
             if (Input.GetKeyDown(KeyCode.Space) && Time.time - lastCallTime > 0.5f)
             {
