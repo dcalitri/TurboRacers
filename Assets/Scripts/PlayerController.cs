@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     public AudioClip carSound;
     public AudioClip shootSound;
+    public AudioClip crashSound;
     private AudioSource playerAudio;
 
     // Start is called before the first frame update
