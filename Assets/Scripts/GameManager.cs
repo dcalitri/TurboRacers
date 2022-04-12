@@ -18,17 +18,20 @@ public class GameManager : MonoBehaviour
     private float spawnRate = 1.0f;
     public bool isGameActive;
     public TextMeshProUGUI titleScreen;
+    public AudioClip crashSound;
+    private AudioSource enemyAudio;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemyAudio = GetComponent<AudioSource>();
     }
     
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
+        enemyAudio.PlayOneShot(crashSound, 1.0f);
     }
 
     public void RestartGame()

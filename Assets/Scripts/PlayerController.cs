@@ -38,6 +38,27 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.right * Time.deltaTime * speed * leftInput);
             transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
 
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                playerAudio.loop = true;
+                playerAudio.clip = carSound;
+                playerAudio.Play();
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                playerAudio.loop = true;
+                playerAudio.clip = carSound;
+                playerAudio.Play();
+            }
+            else if (Input.GetKeyUp(KeyCode.A))
+            {
+                playerAudio.Stop();
+            }
+            else if (Input.GetKeyUp(KeyCode.A))
+            {
+                playerAudio.Stop();
+            }
+
             if (Input.GetKeyDown(KeyCode.Space) && Time.time - lastCallTime > 0.5f)
             {
                 Instantiate(projectilePrefab, bulletSpawner.position, projectilePrefab.transform.rotation);
