@@ -50,11 +50,31 @@ public class PlayerController : MonoBehaviour
                 playerAudio.clip = carSound;
                 playerAudio.Play();
             }
-            else if (Input.GetKeyUp(KeyCode.A))
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                playerAudio.loop = true;
+                playerAudio.clip = carSound;
+                playerAudio.Play();
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                playerAudio.loop = true;
+                playerAudio.clip = carSound;
+                playerAudio.Play();
+            }
+            else if (Input.GetKeyUp(KeyCode.D))
             {
                 playerAudio.Stop();
             }
             else if (Input.GetKeyUp(KeyCode.A))
+            {
+                playerAudio.Stop();
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                playerAudio.Stop();
+            }
+            else if (Input.GetKeyUp(KeyCode.RightArrow))
             {
                 playerAudio.Stop();
             }
