@@ -21,7 +21,6 @@ public class EnemyCollision : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
         if (other.gameObject.CompareTag("Player"))
         {
             gameManager.Health(-1);
@@ -31,6 +30,7 @@ public class EnemyCollision : MonoBehaviour
                 Destroy(other.gameObject);
                 gameManager.GameOver();
             }
+            Destroy(gameObject);
         }
     }
 }
