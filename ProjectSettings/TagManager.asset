@@ -7,6 +7,10 @@ TagManager:
   - Road
   - Enemy
   - Projectile
+  - Powerup 1
+  - Powerup 2
+  - Powerup 1 Indicator
+  - Pawerup 2 Indicator
   layers:
   - Default
   - TransparentFX

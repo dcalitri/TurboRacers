@@ -12,19 +12,25 @@ public class PlayerController : MonoBehaviour
     private float xRangeMax = -5;
     public GameObject projectilePrefab;
     private float lastCallTime = 0;
+    public GameObject powerUpIndicator1;
+    public GameObject powerUpIndicator2;
     public Transform bulletSpawner;
+    public Transform bulletSpawner1;
     private GameManager gameManager;
     public AudioClip carSound;
     public AudioClip shootSound;
     public AudioClip crashSound;
     private AudioSource playerAudio;
-    public bool carIsMoving;
+    public bool hasPowerup;
+    public bool hasPowerUp2;
+    private GameObject enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerAudio = GetComponent<AudioSource>();
+        enemy = GameObject.Find("Enemy");
     }
 
     // Update is called once per frame
@@ -33,12 +39,14 @@ public class PlayerController : MonoBehaviour
         leftInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
-       if(gameManager.isGameActive)
+
+
+        if (gameManager.isGameActive)
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed * leftInput);
             transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
 
-            if(Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 playerAudio.loop = true;
                 playerAudio.clip = carSound;
@@ -87,6 +95,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+
+
         if (transform.position.x < xRangeMin)
         {
             transform.position = new Vector3(xRangeMin, transform.position.y, transform.position.z);
@@ -103,5 +113,47 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, zRange);
         }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Powerup 1"))
+        {
+            hasPowerup = true;
+            Destroy(other.gameObject);
+            StartCoroutine(PowerupCountdownRoutine());
+        }
+        if (other.CompareTag("Powerup 1"))
+        {
+            Time.timeScale = 0.5f;
+            powerUpIndicator1.gameObject.SetActive(true);
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Powerup 2"))
+        {
+            hasPowerUp2 = true;
+            Destroy(other.gameObject);
+            StartCoroutine(PowerupCountdownRoutine());
+        }
+        if (other.CompareTag("Powerup 2"))
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && Time.time - lastCallTime > 0.5f)
+            {
+                Instantiate(projectilePrefab, bulletSpawner1.position, projectilePrefab.transform.rotation);
+                lastCallTime = Time.time;
+                playerAudio.PlayOneShot(shootSound, 1.0f);
+            }
+            powerUpIndicator2.gameObject.SetActive(true);
+            Destroy(other.gameObject);
+        }
+    }
+
+    IEnumerator PowerupCountdownRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        hasPowerup = false;
+        hasPowerUp2 = false;
+        Time.timeScale = 1.0f;
+        powerUpIndicator1.gameObject.SetActive(false);
+        powerUpIndicator2.gameObject.SetActive(false);
     }
 }
