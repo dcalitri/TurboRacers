@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
     private float spawnPosZ = 5;
     public int health;
     public int gameLaps;
+    public int score;
     public List<GameObject> carPrefabs;
     public TextMeshProUGUI laps;
+    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     private float spawnRate = 1.0f;
     public bool isGameActive;
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnEnemies());
         Health(3);
         Laps(0);
+        UpdateScore(0);
     }
 
     // Update is called once per frame
@@ -65,7 +68,13 @@ public class GameManager : MonoBehaviour
         gameLaps += lapsToAdd;
         laps.text = "Laps: " + gameLaps;
     }
-   
+
+    public void UpdateScore(int scoreToAdd)
+    {
+        score += 5;
+        scoreText.text = "Score: " + score;
+    }
+
     IEnumerator SpawnEnemies()
     {
        while (isGameActive)
