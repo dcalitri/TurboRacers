@@ -18,8 +18,8 @@ public class ProjectileCollision : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        gameManager.UpdateScore(5);
         Destroy(gameObject);
+        gameManager.UpdateScore(5);
         Destroy(other.gameObject);
     }
 }

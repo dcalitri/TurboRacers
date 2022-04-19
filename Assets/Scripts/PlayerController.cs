@@ -136,13 +136,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("Powerup 2"))
         {
-            if (Input.GetKeyDown(KeyCode.Space) && Time.time - lastCallTime > 0.5f)
-            {
-                Instantiate(projectilePrefab, bulletSpawner1.position, projectilePrefab.transform.rotation);
-                lastCallTime = Time.time;
-                playerAudio.PlayOneShot(shootSound, 1.0f);
-            }
-            powerUpIndicator2.gameObject.SetActive(true);
+            gameManager.AddHealth(1);
             Destroy(other.gameObject);
         }
     }
@@ -154,6 +148,5 @@ public class PlayerController : MonoBehaviour
         hasPowerUp2 = false;
         Time.timeScale = 1.0f;
         powerUpIndicator1.gameObject.SetActive(false);
-        powerUpIndicator2.gameObject.SetActive(false);
     }
 }

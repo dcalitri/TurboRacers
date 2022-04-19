@@ -71,9 +71,16 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int scoreToAdd)
     {
-        score += 5;
+        score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
+
+    public void AddHealth(int healthToAdd)
+    {
+        health += healthToAdd;
+        lives.text = "Health: " + health;
+    }
+
 
     IEnumerator SpawnEnemies()
     {
