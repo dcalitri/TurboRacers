@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI lives;
+    public TextMeshProUGUI pauseScreen;
     private float spawnRangeX = 20;
     private float spawnPosZ = 5;
     public int health;
@@ -23,6 +24,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI titleScreen;
     public AudioClip crashSound;
     private AudioSource enemyAudio;
+    public bool isGamePaused;
+    public TextMeshProUGUI scoreEarnedText;
+    public TextMeshProUGUI lapsSurvivedText;
+    private float powerUpSpawnRate = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +40,8 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
         enemyAudio.PlayOneShot(crashSound, 1.0f);
+        scoreEarnedText.text = "Score Earned: " + score;
+        lapsSurvivedText.text = "Laps Survived: " + gameLaps;
     }
 
     public void RestartGame()
@@ -56,7 +63,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        PauseGame();
     }
 
     public void Health(int healthToLose)
@@ -83,6 +90,25 @@ public class GameManager : MonoBehaviour
         lives.text = "Health: " + health;
     }
 
+    void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isGamePaused == true)
+            {
+                Time.timeScale = 1;
+                isGamePaused = false;
+                pauseScreen.gameObject.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 0;
+                isGamePaused = true;
+                pauseScreen.gameObject.SetActive(true);
+            }
+        }
+    }
+
 
     IEnumerator SpawnEnemies()
     {
@@ -101,7 +127,7 @@ public class GameManager : MonoBehaviour
     {
         while (isGameActive)
         {
-            yield return new WaitForSeconds(spawnRate * 2);
+            yield return new WaitForSeconds(powerUpSpawnRate);
             int index = Random.Range(0, powerUpPrefabs.Count);
             Instantiate(powerUpPrefabs[index], new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 1, (Random.Range(-spawnPosZ, spawnPosZ))), powerUpPrefabs[index].transform.rotation);
         }
