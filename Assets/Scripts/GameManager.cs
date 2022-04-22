@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI laps;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
-    private float spawnRate = 0.5f;
+    private float spawnRate = 1.0f;
     public bool isGameActive;
     public TextMeshProUGUI titleScreen;
     public AudioClip crashSound;
@@ -114,8 +114,13 @@ public class GameManager : MonoBehaviour
     {
         while (isGameActive)
         {
-            yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, carPrefabs.Count);
+            if (gameLaps == 0)
+            {
+                yield return new WaitForSeconds(spawnRate);
+                Instantiate(carPrefabs[index], new Vector3(spawnRangeX, 0, (Random.Range(-spawnPosZ, spawnPosZ))), carPrefabs[index].transform.rotation);
+            }
+            
             for(int i = 0; i < gameLaps; i++)
             {
                 yield return new WaitForSeconds(spawnRate / gameLaps);
