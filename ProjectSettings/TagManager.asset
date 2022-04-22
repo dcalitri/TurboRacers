@@ -11,6 +11,8 @@ TagManager:
   - Powerup 2
   - Powerup 1 Indicator
   - Pawerup 2 Indicator
+  - Enemy 2
+  - Enemy 3
   layers:
   - Default
   - TransparentFX

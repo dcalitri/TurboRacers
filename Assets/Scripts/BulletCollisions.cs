@@ -24,5 +24,17 @@ public class BulletCollisions : MonoBehaviour
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
+        if (other.gameObject.CompareTag("Enemy 2"))
+        {
+            gameManager.UpdateScore(10);
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Enemy 3"))
+        {
+            gameManager.UpdateScore(-5);
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
     }
 }

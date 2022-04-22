@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     {
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
+        lives.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(false);
+        laps.gameObject.SetActive(false);
         enemyAudio.PlayOneShot(crashSound, 1.0f);
         scoreEarnedText.text = "Score Earned: " + score;
         lapsSurvivedText.text = "Laps Survived: " + gameLaps;
@@ -53,6 +56,9 @@ public class GameManager : MonoBehaviour
     {
         titleScreen.gameObject.SetActive(false);
         isGameActive = true;
+        lives.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(true);
+        laps.gameObject.SetActive(true);
         StartCoroutine(SpawnEnemies());
         StartCoroutine(PowerupSpawn());
         Health(3);

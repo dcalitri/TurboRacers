@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 298727430990372512}
   m_Layer: 0
   m_Name: Enemy car
-  m_TagString: Enemy
+  m_TagString: Enemy 3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  crashSound: {fileID: 8300000, guid: 3811f2b4db2afde4795b09b176e72349, type: 3}
 --- !u!82 &298727430990372512
 AudioSource:
   m_ObjectHideFlags: 0
