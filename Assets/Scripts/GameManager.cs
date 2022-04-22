@@ -90,7 +90,11 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, carPrefabs.Count);
-            Instantiate(carPrefabs[index], new Vector3(spawnRangeX, 0, (Random.Range(-spawnPosZ, spawnPosZ))), carPrefabs[index].transform.rotation);
+            for(int i = 0; i < gameLaps; i++)
+            {
+                yield return new WaitForSeconds(spawnRate / gameLaps);
+                Instantiate(carPrefabs[index], new Vector3(spawnRangeX, 0, (Random.Range(-spawnPosZ, spawnPosZ))), carPrefabs[index].transform.rotation);
+            }
         }
     }
     IEnumerator PowerupSpawn()
