@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 9214039627393204398}
   - component: {fileID: 9214039627393204385}
   - component: {fileID: 9214039627393204397}
+  - component: {fileID: 4347242305667472108}
+  - component: {fileID: -295093924837069241}
   m_Layer: 0
-  m_Name: Powerup 2
+  m_Name: Extra Life
   m_TagString: Powerup 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9214039627393204384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 0.95599985, z: 2}
+  m_LocalPosition: {x: -10, y: 1, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,3 +114,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
+--- !u!114 &4347242305667472108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214039627393204384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b993ebaa64db964c9d3fe1c841a6b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-295093924837069241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214039627393204384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f40387c9764714d8d3a9cb4ef59d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int gameLaps;
     public int score;
     public List<GameObject> carPrefabs;
+    public List<GameObject> powerUpPrefabs;
     public TextMeshProUGUI laps;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         enemyAudio = GetComponent<AudioSource>();
     }
-    
+
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         titleScreen.gameObject.SetActive(false);
         isGameActive = true;
         StartCoroutine(SpawnEnemies());
+        StartCoroutine(PowerupSpawn());
         Health(3);
         Laps(0);
         UpdateScore(0);
@@ -84,11 +86,20 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
-       while (isGameActive)
-       {
+        while (isGameActive)
+        {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, carPrefabs.Count);
             Instantiate(carPrefabs[index], new Vector3(spawnRangeX, 0, (Random.Range(-spawnPosZ, spawnPosZ))), carPrefabs[index].transform.rotation);
-       }
+        }
+    }
+    IEnumerator PowerupSpawn()
+    {
+        while (isGameActive)
+        {
+            yield return new WaitForSeconds(spawnRate * 2);
+            int index = Random.Range(0, powerUpPrefabs.Count);
+            Instantiate(powerUpPrefabs[index], new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 1, (Random.Range(-spawnPosZ, spawnPosZ))), powerUpPrefabs[index].transform.rotation);
+        }
     }
 }
