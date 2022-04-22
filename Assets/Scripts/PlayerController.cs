@@ -7,15 +7,14 @@ public class PlayerController : MonoBehaviour
     private float speed = 10;
     public float leftInput;
     public float forwardInput;
-    private float zRange = 3;
+    private float zRange = 5;
     private float xRangeMin = -17;
-    private float xRangeMax = -5;
+    private float xRangeMax = 10;
     public GameObject projectilePrefab;
     private float lastCallTime = 0;
     public GameObject powerUpIndicator1;
     public GameObject powerUpIndicator2;
     public Transform bulletSpawner;
-    public Transform bulletSpawner1;
     private GameManager gameManager;
     public AudioClip carSound;
     public AudioClip shootSound;
