@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI laps;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
-    private float spawnRate = 1.0f;
+    private float spawnRate = 0.5f;
     public bool isGameActive;
     public TextMeshProUGUI titleScreen;
     public AudioClip crashSound;
