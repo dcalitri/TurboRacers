@@ -10,10 +10,13 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI lives;
     public TextMeshProUGUI pauseScreen;
     private float spawnRangeX = 20;
+    private float powerUpSpawnRangeXMax = 0;
+    private float powerUpSpawnRangeXMin = -10;
     private float spawnPosZ = 5;
     public int health;
     public int gameLaps;
     public int score;
+    public int time;
     public List<GameObject> carPrefabs;
     public List<GameObject> powerUpPrefabs;
     public TextMeshProUGUI laps;
@@ -140,7 +143,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(powerUpSpawnRate);
             int index = Random.Range(0, powerUpPrefabs.Count);
-            Instantiate(powerUpPrefabs[index], new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 1, (Random.Range(-spawnPosZ, spawnPosZ))), powerUpPrefabs[index].transform.rotation);
+            Instantiate(powerUpPrefabs[index], new Vector3(Random.Range(powerUpSpawnRangeXMin, powerUpSpawnRangeXMax), 1, (Random.Range(-spawnPosZ, spawnPosZ))), powerUpPrefabs[index].transform.rotation);
         }
     }
 }

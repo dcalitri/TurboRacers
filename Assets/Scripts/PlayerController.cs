@@ -121,12 +121,19 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
         }
-        if (other.CompareTag("Powerup 1"))
+        if (other.CompareTag("Powerup 1") && gameManager.isGameActive)
         {
             Time.timeScale = 0.5f;
             powerUpIndicator1.gameObject.SetActive(true);
             Destroy(other.gameObject);
+            StartCoroutine(PowerupCountdownRoutine());
         }
+        else
+        {
+            Time.timeScale = 1.0f;
+            powerUpIndicator1.gameObject.SetActive(false);
+        }
+
         if (other.CompareTag("Powerup 2"))
         {
             hasPowerUp2 = true;
@@ -144,7 +151,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         hasPowerup = false;
-        hasPowerUp2 = false;
         Time.timeScale = 1.0f;
         powerUpIndicator1.gameObject.SetActive(false);
     }
